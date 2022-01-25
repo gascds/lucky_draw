@@ -8,7 +8,7 @@ This project is the backend part of lucky draw system, it is written in JAVA (Sp
 
 1. **Get unique ticket** (GetMapping with path: "**ip:10066/lottery/ticket**/")
    - It allows client to get unique ticket based on client session.
-2. **Check winner **(GetMapping with path "**ip:10066/lottery/ticket/winner**/")
+2. **Check winner** (GetMapping with path "**ip:10066/lottery/ticket/winner**/")
    - Check to see if you have won the lottery
 3. **Remove ticket**  (DeleteMapping with path: "**ip:10066/lottery/ticket**/")
    - Before participating in the next round of lottery, need to delete the previous ticket
