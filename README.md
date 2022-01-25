@@ -4,6 +4,16 @@
 
 This project is the backend part of lucky draw system, it is written in JAVA (SpringBoot).
 
+Draw every **10** seconds
+
+change it in the application-dev.yml file
+
+```java
+luckyDraw:
+  cron:
+    expression: 0/10 * * * * ?
+```
+
 ## API part
 
 1. **Get unique ticket** (GetMapping with path: "**ip:10066/lottery/ticket**/")
