@@ -79,3 +79,22 @@ There are **3** log files, all have log-rotation (Max single file size: 50MB and
    removeTicket()-> The ticket number (T_0#2022-01-25 21:47:23#192.168.1.15) is removed.
    getTicket()-> 192.168.1.15: no ticket is found, new ticket is generated, T_0#2022-01-25 21:50:19#192.168.1.15
    ```
+
+### Response code
+
+```java
+#Please refer to class -> com.lottery.Utils.ResponseUtil
+#It defines all the response msg and code
+#Example
+
+BAD_REQUEST_MAP = new HashMap<String, Object>();
+BAD_REQUEST_MAP.put("code", 400);
+BAD_REQUEST_MAP.put("msg", "Invalid Query");
+BAD_REQUEST_MAP.put(DATA_KEY, null);
+
+INTERNAL_ERROR_MAP = new HashMap<String, Object>();
+INTERNAL_ERROR_MAP.put("code", 500);
+INTERNAL_ERROR_MAP.put("msg", "Internal Server Error");
+INTERNAL_ERROR_MAP.put(DATA_KEY, null);
+```
+
