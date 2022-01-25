@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: "lottery"
+  profiles:
+    active: dev
+
+server:
+  port: 10066
+  servlet:
+    context-path: /lottery
+    session:
+      timeout: -1
+      cookie-max-age: -1

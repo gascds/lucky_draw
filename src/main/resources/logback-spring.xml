@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<property name="log.directory" value="./logs" />
+    <property name="log.context.name" value="lottery" />
+    <property name="log.file.name" value="${log.context.name}" />
+    <property name="log.error.file.name" value="${log.context.name}-error" />
+    <property name="log.charset" value="UTF-8" />
+    <property name="log.maxHistory" value="30" />
+    <property name="log.pattern" value="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%level] [%thread] [%logger{50}] >>> %msg%n" />
+    <property name="log.async.queue.size" value="1024" />
+
+	<property name="log.directory.ticket-generate-log" value="./logs/ticket" />
+	<property name="log.directory.ticket-api-log" value="./logs/api" />
+	<property name="log.directory.error-log" value="./logs/error" />
+	<contextName>${log.context.name}</contextName>
+
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="ticket-log-file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${log.directory.ticket-api-log}/Api_%d{yyyy-MM-dd}_%i.log
+			</fileNamePattern>
+			<maxFileSize>50MB</maxFileSize>
+			<MaxHistory>10</MaxHistory>
+			<totalSizeCap>10GB</totalSizeCap>
+		</rollingPolicy>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<encoder>
+			<pattern>%msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="ticket-generate-file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${log.directory.ticket-generate-log}/Ticket_%d{yyyy-MM-dd}_%i.log
+			</fileNamePattern>
+			<maxFileSize>50MB</maxFileSize>
+			<MaxHistory>10</MaxHistory>
+			<totalSizeCap>10GB</totalSizeCap>
+		</rollingPolicy>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<encoder>
+			<pattern>%msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="error-file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${log.directory.error-log}/Error_%d{yyyy-MM-dd}_%i.log
+			</fileNamePattern>
+			<maxFileSize>50MB</maxFileSize>
+			<MaxHistory>10</MaxHistory>
+			<totalSizeCap>10GB</totalSizeCap>
+		</rollingPolicy>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<encoder>
+			<pattern>${log.pattern}</pattern>
+			<immediateFlush>true</immediateFlush>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+
+
+	<logger name="com.lottery.Controller" level="INFO">
+		<appender-ref ref="ticket-log-file" />
+	</logger>
+
+	<logger name="com.lottery.Service" level="INFO">
+		<appender-ref ref="ticket-generate-file" />
+	</logger>
+
+    <root level="INFO">
+		<appender-ref ref="error-file" />
+		<appender-ref ref="console" />
+    </root>
+
+</configuration>
