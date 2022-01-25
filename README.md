@@ -7,31 +7,31 @@ This project is the backend part of lucky draw system, it is written in JAVA (Sp
 ## API part
 
 1. **Get unique ticket** (GetMapping with path: "**ip:10066/lottery/ticket**/")
-   - It allows client to get unique ticket based on client session.
+   - It allows the client to get a unique ticket based on the client session.
 2. **Check winner** (GetMapping with path "**ip:10066/lottery/ticket/winner**/")
    - Check to see if you have won the lottery
 3. **Remove ticket**  (DeleteMapping with path: "**ip:10066/lottery/ticket**/")
    - Before participating in the next round of lottery, need to delete the previous ticket
 
-Remakr: Port 10066 is pre-defined in the config file
+Remark: Port 10066 is pre-defined in the config file
 
 ## Limitation
 
-1. User ticket is stored in session, it may loss when connection is closed
+1. User ticket is stored in the session, it may lost when connection is closed
    1. **Current solution**
-      1. Log all the generated ticket and winner ticket in each round
-      2. Front end remind user to screenshot or keep the ticket personally
+      1. Log all the generated tickets and winner tickets in each round
+      2. Front end remind the user to screenshot or keep the ticket personally
       3. Check the log file when user report
    2. **Further improvement**
-      1. Store all ticket, lucky draw result in the Database 
-      2. Authenticate contestant in every participation
+      1. Store all tickets, lucky draw result in the Database 
+      2. Authenticate contestants in every participation
 2. User need to check the lucky draw result maunally
    1. **Current solution**
       1. Front end call API to check user won the lottery or not
-      2. Server will response "**true**" and "**false**" resepctivelly
-      3. Front end display related message to user
+      2. Server will respond "**true**" and "**false**" respectively
+      3. Front end display related message to the user
    2. **Further improvement**
-      1. Backend push the lucky draw result to client by websocket
+      1. Backend push the lucky draw result to the client by WebSocket
       2. Push API (https://developer.mozilla.org/en-US/docs/Web/API/Push_API)
 
 ## Log file
